@@ -10,5 +10,3 @@ tell application "System Events"
 		set visible of process x to false
 	end repeat
 end tell
-
-// Change App 1, App 2 & App 3 to your desired startup applications. You can add as many as you want.
