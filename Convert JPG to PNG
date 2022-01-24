@@ -1,0 +1,11 @@
+set pathFile to selection as alias
+set pathFile to quoted form of POSIX path of pathFile
+	
+set destFolder to do shell script "dirname " & pathFile
+set baseName to do shell script "basename " & pathFile
+set baseName to text 1 thru -5 of baseName
+	
+set destFile to destFolder & "/" & baseName & ".png"
+set destFile to quoted form of destFolder
+
+do shell script "sips -s format png " & pathFile & " --out " & destFile
