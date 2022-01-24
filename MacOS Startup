@@ -1,0 +1,12 @@
+set appList to {"App 1", "App 2", "App 3"}
+repeat with theApp in appList
+	tell application theApp
+		activate
+	end tell
+end repeat
+
+tell application "System Events"
+	repeat with x in (get name of processes whose visible is true)
+		set visible of process x to false
+	end repeat
+end tell
