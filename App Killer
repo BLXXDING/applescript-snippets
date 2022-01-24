@@ -1,0 +1,18 @@
+activate
+set applaunch to text returned of (display dialog "" default answer "" buttons {"Go"} default button "Go")
+if applaunch contains "" then
+	error number -128
+else if applaunch contains applaunch then
+	try
+		tell application applaunch
+			quit
+		end tell
+	on error
+		tell application "System Events"
+			set {procesList, pidList} to the {name, unix id} of (every process whose name contains applaunch)
+			if procesList contains applaunch then
+				do shell script "kill -KILL " & pidList
+			end if
+		end tell
+	end try
+end if
