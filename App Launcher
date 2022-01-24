@@ -1,0 +1,18 @@
+set applaunch to text returned of (display dialog "" default answer "" buttons {"Go"} default button "Go")
+if applaunch contains "kill" then
+	set originString to applaunch
+	set {TID, text item delimiters} to {text item delimiters, {"kill "}}
+	set resultString to text item 2 of originString
+	set text item delimiters to TID
+	set killapp to resultString
+	tell application killapp
+		quit
+	end tell
+else if applaunch contains "" then
+	error number -128
+else if applaunch contains applaunch then
+	tell application applaunch
+		activate
+	end tell
+end if
+end
